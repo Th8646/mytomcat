@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wpt</groupId>
+  <artifactId>wpt-tomcat</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>wpt-tomcat Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!--
+        1.引入servlet-api.jar,为了开发servelt
+        2.dependency 标签是表示引入一个包
+        3.groupID 报的公司信息  javax.servlet
+        4.artifactId：项目名 javax.servlet-api
+        groupId+artifactId  最终以目录形式体现
+        5.version  版本
+        6.scope  表示引入的包的作用范围
+        7.provided 表示tomcat本身有jar包，此处引入jar包，表示在编译测试时有效，打包发布时不会带上jar包
+        8.下载的包在指定的目录
+    -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>3.1.0</version>
+        <scope>provided</scope>
+      </dependency>
+  </dependencies>
+  <build>
+    <finalName>wpt-tomcat</finalName>
+  </build>
+</project>

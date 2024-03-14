@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="wpt_tomcat">
+    <output-path>$PROJECT_DIR$/out/artifacts/wpt_tomcat</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="wpt-tomcat" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="wpt-tomcat/web/Web" />
+    </root>
+  </artifact>
+</component>
