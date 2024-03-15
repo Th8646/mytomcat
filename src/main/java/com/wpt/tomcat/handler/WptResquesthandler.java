@@ -3,10 +3,11 @@ package com.wpt.tomcat.handler;/**
  * @date 2024/3/14 22:36
  */
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
+import com.wpt.servlet.WptHttpServlet;
+import com.wpt.tomcat.WptTomcat;
 import com.wpt.tomcat.http.WptRequest;
 import com.wpt.tomcat.http.WptResponse;
-import jdk.nashorn.internal.ir.CallNode;
+import com.wpt.servlet.WptCalServlet;
 
 import java.io.*;
 import java.net.Socket;
@@ -34,11 +35,11 @@ public class WptResquesthandler implements Runnable {
         try {
             InputStream inputStream = socket.getInputStream();
             WptRequest wptRequest = new WptRequest(inputStream);
-            String num1 = wptRequest.getParameter("num1");
-            String num2 = wptRequest.getParameter("num2");
-            System.out.println("请求的参数num1= " + num1);
-            System.out.println("uri=" + wptRequest.getUri());
-            System.out.println(wptRequest.getMethod());
+//            String num1 = wptRequest.getParameter("num1");
+//            String num2 = wptRequest.getParameter("num2");
+//            System.out.println("请求的参数num1= " + num1);
+//            System.out.println("uri=" + wptRequest.getUri());
+//            System.out.println(wptRequest.getMethod());
 //            // 字符流转换,进行数据接受
 //            BufferedReader bufferedReader =
 //                    new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
@@ -54,13 +55,34 @@ public class WptResquesthandler implements Runnable {
 //                System.out.println(mes);
 //            }
             WptResponse wptResponse = new WptResponse(socket.getOutputStream());
-            String resp = wptResponse.respHeader+"<h1>hello world</h1>";
-            OutputStream outputStream = wptResponse.getOutputStream();
-            outputStream.write(resp.getBytes());
+//            String resp = wptResponse.respHeader+"<h1>hello world</h1>";
+//            OutputStream outputStream = wptResponse.getOutputStream();
+//            outputStream.write(resp.getBytes());
 
-            outputStream.flush();
-            outputStream.close();
-            inputStream.close();
+//         // 创建WptCalServlet对象
+//            WptCalServlet wptCalServlet = new WptCalServlet();
+//            wptCalServlet.doGet(wptRequest,wptResponse);
+
+            //使用反射构建对象
+            //1.得到uri,servletUrlMapping 的 url-pattern
+            String uri = wptRequest.getUri();
+            String servletName = WptTomcat.servletUrlMapping.get(uri);
+            //2.通过uri---servletName---servlet实例
+            WptHttpServlet wptHttpServlet =
+                    WptTomcat.servletMapping.get(servletName);
+            if (wptHttpServlet!=null){
+                wptHttpServlet.service(wptRequest, wptResponse);
+            }else {
+                   //没有servlet返回404
+                String resp = WptResponse.respHeader+"<h1>404 Not Found</h1>";
+                OutputStream outputStream = wptResponse.getOutputStream();
+                outputStream.write(resp.getBytes());
+                outputStream.flush();
+                outputStream.close();
+            }
+//            outputStream.flush();
+//            outputStream.close();
+//            inputStream.close();
             socket.close();
 
 //            // 构建http响应头

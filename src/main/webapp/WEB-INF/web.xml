@@ -12,4 +12,13 @@
     <servlet-name>CalServlet</servlet-name>
     <url-pattern>/calServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WptServlet</servlet-name>
+    <servlet-class>com.wpt.servlet.WptCalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WptServlet</servlet-name>
+    <url-pattern>/wptCalServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
