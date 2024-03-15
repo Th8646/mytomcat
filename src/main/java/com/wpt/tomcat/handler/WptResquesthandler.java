@@ -85,7 +85,7 @@ public class WptResquesthandler implements Runnable {
 //            inputStream.close();
             socket.close();
 
-//            // 构建http响应头
+//            构建http响应头
 //            String respHeader = "HTTP/1.1 200 OK\n" +
 //                    "Content-Type: text/html;charset=utf-8\r\n\r\n";
 //            String resp = respHeader + "<h1>Hello,World</h1>";
