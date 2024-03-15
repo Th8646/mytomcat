@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
   <servlet-name>CalServlet</servlet-name>
-  <servlet-class>com.wpt.servlet.CalServlet</servlet-class>
+  <servlet-class>com.wpt.tomcat.servlet.CalServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CalServlet</servlet-name>

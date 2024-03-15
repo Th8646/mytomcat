@@ -1,4 +1,4 @@
-package com.wpt.servlet; /**
+package com.wpt.tomcat.servlet; /**
  * @author wpt@onlying.cn
  * @date 2024/3/14 20:17
  */
@@ -6,8 +6,6 @@ package com.wpt.servlet; /**
 import com.wpt.utils.WebUtils;
 
 import java.io.*;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
